@@ -12,7 +12,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"github.com/ebina4yaka/gqlgen-api/graph/model"
+	"github.com/ebina4yaka/gqlgen-api-example/graph/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -341,7 +341,7 @@ func (ec *executionContext) field_Query_allPosts_args(ctx context.Context, rawAr
 	var arg0 *model.OrderBy
 	if tmp, ok := rawArgs["orderBy"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("orderBy"))
-		arg0, err = ec.unmarshalOOrderBy2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐOrderBy(ctx, tmp)
+		arg0, err = ec.unmarshalOOrderBy2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐOrderBy(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -445,7 +445,7 @@ func (ec *executionContext) _Mutation_createPost(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Post)
 	fc.Result = res
-	return ec.marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
+	return ec.marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_updatePost(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -487,7 +487,7 @@ func (ec *executionContext) _Mutation_updatePost(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Post)
 	fc.Result = res
-	return ec.marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
+	return ec.marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Post_id(ctx context.Context, field graphql.CollectedField, obj *model.Post) (ret graphql.Marshaler) {
@@ -739,7 +739,7 @@ func (ec *executionContext) _Query_allPosts(ctx context.Context, field graphql.C
 	}
 	res := resTmp.([]*model.Post)
 	fc.Result = res
-	return ec.marshalNPost2ᚕᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPostᚄ(ctx, field.Selections, res)
+	return ec.marshalNPost2ᚕᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPostᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query__allPostsMeta(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -774,7 +774,7 @@ func (ec *executionContext) _Query__allPostsMeta(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.PostsMeta)
 	fc.Result = res
-	return ec.marshalNPostsMeta2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPostsMeta(ctx, field.Selections, res)
+	return ec.marshalNPostsMeta2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPostsMeta(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2401,11 +2401,11 @@ func (ec *executionContext) marshalNInt2int(ctx context.Context, sel ast.Selecti
 	return res
 }
 
-func (ec *executionContext) marshalNPost2githubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v model.Post) graphql.Marshaler {
+func (ec *executionContext) marshalNPost2githubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v model.Post) graphql.Marshaler {
 	return ec._Post(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNPost2ᚕᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPostᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Post) graphql.Marshaler {
+func (ec *executionContext) marshalNPost2ᚕᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPostᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Post) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2429,7 +2429,7 @@ func (ec *executionContext) marshalNPost2ᚕᚖgithubᚗcomᚋebina4yakaᚋgqlge
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPost(ctx, sel, v[i])
+			ret[i] = ec.marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPost(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2442,7 +2442,7 @@ func (ec *executionContext) marshalNPost2ᚕᚖgithubᚗcomᚋebina4yakaᚋgqlge
 	return ret
 }
 
-func (ec *executionContext) marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v *model.Post) graphql.Marshaler {
+func (ec *executionContext) marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v *model.Post) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2452,11 +2452,11 @@ func (ec *executionContext) marshalNPost2ᚖgithubᚗcomᚋebina4yakaᚋgqlgen�
 	return ec._Post(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNPostsMeta2githubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPostsMeta(ctx context.Context, sel ast.SelectionSet, v model.PostsMeta) graphql.Marshaler {
+func (ec *executionContext) marshalNPostsMeta2githubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPostsMeta(ctx context.Context, sel ast.SelectionSet, v model.PostsMeta) graphql.Marshaler {
 	return ec._PostsMeta(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNPostsMeta2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐPostsMeta(ctx context.Context, sel ast.SelectionSet, v *model.PostsMeta) graphql.Marshaler {
+func (ec *executionContext) marshalNPostsMeta2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐPostsMeta(ctx context.Context, sel ast.SelectionSet, v *model.PostsMeta) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2749,7 +2749,7 @@ func (ec *executionContext) marshalOInt2ᚖint(ctx context.Context, sel ast.Sele
 	return graphql.MarshalInt(*v)
 }
 
-func (ec *executionContext) unmarshalOOrderBy2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐOrderBy(ctx context.Context, v interface{}) (*model.OrderBy, error) {
+func (ec *executionContext) unmarshalOOrderBy2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐOrderBy(ctx context.Context, v interface{}) (*model.OrderBy, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -2758,7 +2758,7 @@ func (ec *executionContext) unmarshalOOrderBy2ᚖgithubᚗcomᚋebina4yakaᚋgql
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOOrderBy2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚋgraphᚋmodelᚐOrderBy(ctx context.Context, sel ast.SelectionSet, v *model.OrderBy) graphql.Marshaler {
+func (ec *executionContext) marshalOOrderBy2ᚖgithubᚗcomᚋebina4yakaᚋgqlgenᚑapiᚑexampleᚋgraphᚋmodelᚐOrderBy(ctx context.Context, sel ast.SelectionSet, v *model.OrderBy) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

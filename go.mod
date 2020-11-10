@@ -1,4 +1,4 @@
-module github.com/ebina4yaka/gqlgen-api
+module github.com/ebina4yaka/gqlgen-api-example
 
 go 1.15
 
