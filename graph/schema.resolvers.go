@@ -6,55 +6,44 @@ package graph
 import (
 	"context"
 	"fmt"
-	"sort"
-	"strconv"
 	"time"
 
+	"github.com/ebina4yaka/gqlgen-api-example/db"
 	"github.com/ebina4yaka/gqlgen-api-example/graph/generated"
 	"github.com/ebina4yaka/gqlgen-api-example/graph/model"
 )
 
 func (r *mutationResolver) CreatePost(ctx context.Context, title string, url string) (*model.Post, error) {
+	count := db.CountPosts()
 	post := model.Post{
-		ID:        fmt.Sprintf("%d", len(posts)+1),
+		ID:        fmt.Sprintf("%d", count+1),
 		Title:     title,
 		URL:       url,
 		Votes:     0,
 		CreatedAt: time.Now().Format("2006-01-02 15:04:05"),
 	}
-	posts = append(posts, &post)
+	db.CreatePost(&post)
 	return &post, nil
 }
 
 func (r *mutationResolver) UpdatePost(ctx context.Context, id string, votes *int) (*model.Post, error) {
-	if votes == nil {
-		return nil, nil
-	}
-	i, _ := strconv.Atoi(id)
-	posts[i-1].Votes = *votes
-	return posts[i-1], nil
+	db.UpdatePost(id, votes)
+	return db.FindPost(id), nil
 }
 
 func (r *queryResolver) AllPosts(ctx context.Context, orderBy *model.OrderBy, first int, skip int) ([]*model.Post, error) {
-	if skip > len(posts) {
-		skip = len(posts)
-	}
-	if (skip + first) > len(posts) {
-		first = len(posts) - skip
-	}
-	sortedPosts := make([]*model.Post, len(posts))
-	copy(sortedPosts, posts)
-	if orderBy != nil && *orderBy == "createdAt_DESC" {
-		sort.SliceStable(sortedPosts, func(i, j int) bool {
-			return sortedPosts[i].CreatedAt > sortedPosts[j].CreatedAt
-		})
-	}
-	slicePosts := sortedPosts[skip : skip+first]
-	return slicePosts, nil
+	sort := func() int64 {
+		if orderBy != nil && *orderBy == "createdAt_DESC" {
+			return -1
+		}
+		return 1
+	}()
+	posts := db.AllPosts(int64(first), int64(skip), sort)
+	return posts, nil
 }
 
 func (r *queryResolver) AllPostsMeta(ctx context.Context) (*model.PostsMeta, error) {
-	postsMeta := model.PostsMeta{Count: len(posts)}
+	postsMeta := model.PostsMeta{Count: int(db.CountPosts())}
 	return &postsMeta, nil
 }
 
@@ -66,11 +55,3 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//    it when you're done.
-//  - You have helper methods in this file. Move them out to keep these resolver files clean.
-var posts = make([]*model.Post, 0)
