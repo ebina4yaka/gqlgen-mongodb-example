@@ -39,10 +39,10 @@ func UpdatePost(id string, votes *int) {
 		}
 	}()
 	col := client.Database(databaseName).Collection(collectionName)
-	filter := bson.D{{"id", id}}
-	update := bson.D{{"$set",
-		bson.D{
-			{"votes", votes},
+	filter := bson.D{{Key: "id", Value: id}}
+	update := bson.D{{Key: "$set",
+		Value: bson.D{
+			{Key: "votes", Value: votes},
 		},
 	}}
 	_, err := col.UpdateOne(ctx, filter, update)
@@ -61,7 +61,7 @@ func FindPost(id string) *model.Post {
 		}
 	}()
 	col := client.Database(databaseName).Collection(collectionName)
-	filter := bson.D{{"id", id}}
+	filter := bson.D{{Key: "id", Value: id}}
 	var result *model.Post
 	err := col.FindOne(ctx, filter).Decode(&result)
 	if err != nil {
@@ -98,7 +98,7 @@ func AllPosts(limit int64, skip int64, sort int64) []*model.Post {
 	}()
 	col := client.Database(databaseName).Collection(collectionName)
 	findOptions := options.Find()
-	findOptions.SetSort(bson.D{{"id", sort}}).SetSkip(skip).SetLimit(limit)
+	findOptions.SetSort(bson.D{{Key: "id", Value: sort}}).SetSkip(skip).SetLimit(limit)
 	cur, err := col.Find(ctx, bson.D{}, findOptions)
 	if err != nil {
 		log.Print(err)
