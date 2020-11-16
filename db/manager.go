@@ -2,7 +2,9 @@ package db
 
 import (
 	"context"
+	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -14,7 +16,11 @@ func GetContext() (context.Context, context.CancelFunc) {
 }
 
 func GetClient(ctx context.Context) *mongo.Client {
-	uri := "mongodb://root:example@localhost:27017"
+	mongoUser := os.Getenv("MONGO_USERNAME")
+	mongoPass := os.Getenv("MONGO_PASSWORD")
+	mongoHost := os.Getenv("MONGO_HOST")
+	mongoPort := os.Getenv("MONGO_PORT")
+	uri := fmt.Sprintf("mongodb://%s:%s@%s:%s", mongoUser, mongoPass, mongoHost, mongoPort)
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
 		log.Print(err)
