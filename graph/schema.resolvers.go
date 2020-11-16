@@ -20,7 +20,7 @@ func (r *mutationResolver) CreatePost(ctx context.Context, title string, url str
 		Title:     title,
 		URL:       url,
 		Votes:     0,
-		CreatedAt: time.Now().Format("2006-01-02 15:04:05"),
+		CreatedAt: time.Now(),
 	}
 	db.CreatePost(&post)
 	return &post, nil
