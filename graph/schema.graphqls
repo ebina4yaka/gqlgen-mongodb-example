@@ -3,7 +3,7 @@ type Post {
   title: String!
   votes: Int!
   url: String!
-  createdAt: String!
+  createdAt: Time!
 }
 
 type PostsMeta {
@@ -24,3 +24,5 @@ type Mutation {
   createPost(title: String!, url: String!): Post!
   updatePost(id: ID!, votes: Int): Post!
 }
+
+scalar Time
