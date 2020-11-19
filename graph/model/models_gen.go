@@ -10,15 +10,15 @@ import (
 )
 
 type Post struct {
-	ID        string    `json:"id"`
-	Title     string    `json:"title"`
-	Votes     int       `json:"votes"`
-	URL       string    `json:"url"`
-	CreatedAt time.Time `json:"createdAt"`
+	ID        string    `json:"id" bson:"id"`
+	Title     string    `json:"title" bson:"title"`
+	Votes     int       `json:"votes" bson:"votes"`
+	URL       string    `json:"url" bson:"url"`
+	CreatedAt time.Time `json:"createdAt" bson:"created_at"`
 }
 
 type PostsMeta struct {
-	Count int `json:"count"`
+	Count int `json:"count" bson:"count"`
 }
 
 type OrderBy string
