@@ -1,0 +1,25 @@
+name: Test Go Project
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.15.5
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15.5
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: go build -o app -v
+
+      - name: Test
+        run: go test -v ./tests
