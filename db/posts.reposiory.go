@@ -98,7 +98,7 @@ func AllPosts(limit int64, skip int64, sort int64) []*model.Post {
 	}()
 	col := client.Database(databaseName).Collection(collectionName)
 	findOptions := options.Find()
-	findOptions.SetSort(bson.D{{Key: "createdat", Value: sort}}).SetSkip(skip).SetLimit(limit)
+	findOptions.SetSort(bson.D{{Key: "created_at", Value: sort}}).SetSkip(skip).SetLimit(limit)
 	cur, err := col.Find(ctx, bson.D{}, findOptions)
 	if err != nil {
 		log.Print(err)
